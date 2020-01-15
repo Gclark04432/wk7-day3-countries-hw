@@ -1,12 +1,15 @@
 <template lang="html">
   <div>
     <select>
-      <option v-for="country in countriesList">{{ country.name }}</option>
+      <countries-list :country="country"></countries-list>
     </select>
   </div>
 </template>
 
 <script>
+import {eventBus} from './main.js';
+import CountryList from './components/CountryList.vue';
+
 export default {
   name: 'app',
   data: function () {
@@ -23,7 +26,10 @@ export default {
     eventBus.$on('country-selected', (country) => {
       this.selectedCountry = country;
     });
-  }
+  },
+  components: {
+  "countries-list": CountryList,
+}
 }
 </script>
 
